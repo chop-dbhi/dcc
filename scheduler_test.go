@@ -3,8 +3,6 @@ package dcc
 import (
 	"testing"
 	"time"
-
-	"github.com/blang/semver"
 )
 
 func TestScheduler(t *testing.T) {
@@ -13,9 +11,7 @@ func TestScheduler(t *testing.T) {
 	s := &Service{
 		Name: "scheduler-test",
 
-		Version: semver.Version{
-			Major: 1,
-		},
+		Version: "1.0.0",
 
 		Debug: true,
 

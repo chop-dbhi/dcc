@@ -1,10 +1,6 @@
 package dcc
 
-import (
-	"testing"
-
-	"github.com/blang/semver"
-)
+import "testing"
 
 func TestQueue(t *testing.T) {
 	var out []string
@@ -19,9 +15,7 @@ func TestQueue(t *testing.T) {
 	s := &Service{
 		Name: "queue-test",
 
-		Version: semver.Version{
-			Major: 1,
-		},
+		Version: "1.0.0",
 
 		Debug: true,
 

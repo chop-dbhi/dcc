@@ -30,8 +30,6 @@ import (
 const StatusUnprocessableEntity = 422
 
 var (
-	emptyVersion = semver.Version{}
-
 	// Timeout when attempting to gracefully shut down a service.
 	ShutdownTimeout = 10 * time.Second
 
@@ -106,7 +104,7 @@ type Info struct {
 	Name string
 
 	// Version of the service.
-	Version *semver.Version
+	Version string
 
 	// UUID of the service for tracing purposes.
 	UUID uuid.UUID
@@ -188,7 +186,7 @@ type Service struct {
 	Labels []string
 
 	// Version is the semantic version.
-	Version semver.Version
+	Version string
 
 	// Unique identifier of the service.
 	UUID uuid.UUID
@@ -255,8 +253,8 @@ func (s *Service) validate() error {
 		return ErrNameRequired
 	}
 
-	if s.Version.Equals(emptyVersion) {
-		return ErrVersionRequired
+	if _, err := semver.Parse(s.Version); err != nil {
+		return err
 	}
 
 	if s.Host == "" {
@@ -339,7 +337,7 @@ func (s *Service) init() {
 func (s *Service) Info() *Info {
 	return &Info{
 		Name:      s.Name,
-		Version:   &s.Version,
+		Version:   s.Version,
 		Available: s.available,
 		UUID:      s.UUID,
 		Time:      s.startTime,
