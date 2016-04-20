@@ -16,4 +16,4 @@ install:
     - ./linux-amd64/glide install
       
 script:
-    - go test -v $(./linux-amd64/glide novendor)
+    - go test -v $(./linux-amd64/glide novendor | grep -v examples)
