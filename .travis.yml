@@ -1,8 +1,22 @@
 language: go
 
+sudo: false
+
 go:
   - tip
+  - 1.6
   - 1.5
-  - 1.4
+
+# Required for Go 1.5 
+env:
+    - GO15VENDOREXPERIMENT=1
   
-sudo: false
+before_install:
+    - wget https://github.com/Masterminds/glide/releases/download/0.10.2/glide-0.10.2-linux-amd64.tar.gz
+    - tar zxf glide-0.10.2-linux-amd64.tar.gz
+
+install:
+    - ./linux-amd64/glide install
+      
+script:
+    - go test $(./linux-amd64/glide novendor | grep -v examples)
