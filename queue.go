@@ -10,9 +10,10 @@ import (
 	"sync"
 	"time"
 
+	"gopkg.in/labstack/echo.v1"
+
 	"github.com/Sirupsen/logrus"
 	"github.com/jpillora/backoff"
-	"github.com/labstack/echo"
 	"github.com/satori/go.uuid"
 	"golang.org/x/net/context"
 )

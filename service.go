@@ -18,12 +18,12 @@ import (
 
 	"github.com/Sirupsen/logrus"
 	"github.com/blang/semver"
-	"github.com/labstack/echo"
 	"github.com/satori/go.uuid"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 
-	mw "github.com/labstack/echo/middleware"
+	"gopkg.in/labstack/echo.v1"
+	mw "gopkg.in/labstack/echo.v1/middleware"
 )
 
 // 422 Unprocessable Entity HTTP status code.
@@ -406,11 +406,8 @@ func (s *Service) Start(args []string) error {
 	s.Server.Addr = addr
 	s.Server.Handler = s.Mux
 
-	// Enable HTTP 2 support. Since echo is not being used
-	// to create the http.Server, the mux.HTTP2 does not already
-	// affect anything, but is here for completeness.
+	// Enable HTTP 2 support.
 	if s.HTTP2 {
-		s.Mux.HTTP2(true)
 		http2.ConfigureServer(s.Server, nil)
 	}
 

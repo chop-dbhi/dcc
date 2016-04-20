@@ -1,0 +1,17 @@
+package: github.com/chop-dbhi/dcc
+import:
+- package: github.com/Sirupsen/logrus
+- package: github.com/blang/semver
+- package: github.com/jpillora/backoff
+- package: github.com/robfig/cron
+- package: github.com/satori/go.uuid
+- package: github.com/spf13/pflag
+- package: github.com/spf13/viper
+- package: golang.org/x/net
+  subpackages:
+  - context
+  - http2
+- package: gopkg.in/labstack/echo.v1
+  subpackages:
+  - middleware
+- package: gopkg.in/tylerb/graceful.v1
