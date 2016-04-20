@@ -14,3 +14,6 @@ before_install:
 
 install:
     - ./linux-amd64/glide install
+      
+test:
+    - go test -v $(./linux-amd64/glide novendor)
